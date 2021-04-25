@@ -1,4 +1,4 @@
-package io.github.nickacpt.nickarcade.commands
+package io.github.openminigameserver.nickarcade.commands.impl
 
 import cloud.commandframework.Command
 import cloud.commandframework.annotations.Argument
@@ -185,6 +185,10 @@ object RankCommands {
 
                 PlayerDataManager.savePlayerData(player)
                 PlayerDataManager.reloadProfile(player)
+
+                if (prop == PlayerOverrides::rankOverride) {
+                    player.audience.sendMessage(text("You are now ", GREEN).append(text(valueFinal.toString(), GREEN)))
+                }
                 sendSuccessMessage(
                     it.sender,
                     text(message, GREEN),
